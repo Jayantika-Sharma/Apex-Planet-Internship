@@ -133,7 +133,7 @@ WireShark displays capture packets information such as:
 4. Debugging applications
 <img src="./Images/Wireshark/debugging.png" height=200px>
 5. Detecting unusual network activity
-<img src="./Images/Wireshark/Repeated.png" height=200px>
+<img src="./Images/Wireshark/Repeated.pSng" height=200px>
 
 ## 2.Nmap (network scanning).
 _MetaSploit2 is used as target._
@@ -151,6 +151,7 @@ It list all target hosts,without actually scanning them.
 It discovers hosts _without_ performing port scans.
 
 **nmap -sn <target>**
+
 <img src="./Images/nmap/sL-Sn.png" height=200px>
 
 #### Skip Host Discovery (-Pn)
@@ -159,33 +160,39 @@ It treats the host status as up and proceeds with port/service requests.
 It is useful when host is active,but firewall is refraining from discovery.
 
 **nmap -Pn <target>**
+
 <img src="./Images/nmap/Pn.png" height=200px>
 
 #### ICMP Echo Ping (-PE)
 It uses traditional ICMP ping mechanism,to discover active/reachable hosts.
 
 **nmap -PE <target>**
+
 <img src="./Images/nmap/PE.png" height=200px>>
 
 #### TCP SYN Ping (-PS)
 It sends TCP packets to one or more specified ports to determine if host is reachable or not.
 
 **nmap -PS<port> <target>**
+
 <img src="./Images/nmap/PS.png" height=200px>>
 
 ### TCP SYN Scan (-sS)
 It is often referred as an *Half-open Scan* or _stealth Scan_, as it doesnt complete TCP connection.
 **nmap -sS <target>**
+
 <img src="./Images/nmap/sS.png" height=200px>
 <hr>
 
 ### Aggressive Scan (-A)
 It provides more information than any basic scan and generate more traffic.
 **nmap -A <target>**
+
 <img src="./Images/nmap/A.png" height=200px>
 
 ### Top Scan
 **nmap --top-ports <number> <target>**
+
 <img src="./Images/nmap/top.png" height=200px>
 
 ### Ouput
@@ -198,10 +205,13 @@ It provides more information than any basic scan and generate more traffic.
 1. Discover active hosts on network.
 2. Identify open, closed ports.
 **nmap -Pp<port_number> <target>**
+
 <img src="./Images/nmap/port.png" height=200px>
 3. Detect services running on open ports.
 4. Determine service versions.
+
 **nmap -sV <target>**
+
 <img src="./Images/nmap/sV.png" height=200px>
 
 ## 3.Burp Suite (web proxy).
@@ -234,6 +244,7 @@ nc [options] <host> <port>
 #### Port Scanning
 **nc -zv <Target IP> <port>**
 It check whether TCP ports are accepting connections using TCP connection.
+
 <img src="./Images/Netcat/Port_scan.png" height=200px>
 -z : Doesn't send application data 
 -v : Shows connection information
@@ -244,13 +255,17 @@ It check whether TCP ports are accepting connections using TCP connection.
 Netcat can be used to transfer a file between two machines by creating a TCP connection between a sender and a receiver.
 ##### Steps:
 - File Creation:
+
 <img src="./Images/Netcat/File_create.png" height=200px>
 
 1. Receiver starts listening
+
 <img src="./Images/Netcat/file_transfer_ms2.png" height=200px>
+
 nc -lv 5000 > received.txt
 
 2. Send File
+
 <img src="./Images/Netcat/file_transfer_linux.png" height=200px>
 
 #### Remote Shell Access
@@ -258,14 +273,17 @@ It refers to the interaction of command-line shell on another computer through a
 
 #### Data Tunneling
 It is the process of transporting data from one system to another by encapsulating it inside a network communication channel or protocol.
+
 <img src="./Images/Netcat/file_transfer_ms2.png" height=200px>
 <img src="./Images/Netcat/chat_linux.png" height=200px>
 
 #### Reverse Shell
 It is a type of remote shell connection in which the target machine initiates a connection back to the machine waiting for the connection.
+
 <img src="./Images/Netcat/Kali.png" height=200px>
 <img src="./Images/Netcat/shell.png" height=200px>
 
 #### Security auditing
 Version of ports can be obtained.
+
 <img src="./Images/Netcat/Banner_Grabbing.png" height=200px>
