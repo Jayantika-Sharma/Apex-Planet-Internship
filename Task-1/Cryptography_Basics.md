@@ -34,6 +34,8 @@ Example: SHA-1,SHA-256,MD5,MD6
 - It is a cryptographic hash that belongs to SHA-2 family.
 - It converts input data of any length into fixed _256 bit_ hash value.
 - *Application*: security application(data integrity verification, digital signatures), blockchain technology, and password hashing.
+<hr>
+<hr>
 
 ## 3.Digital Certificates & SSL/TLS.
 
@@ -95,6 +97,8 @@ It works in 4 phases.
 ### Encrypted Process:
 <img src="./Images/OpenSSL/Encrypted.png" height=200px>
 
+<hr>
+<hr>
 
 # Tool Familiarization
 ## 1.Wireshark (packet capture)
@@ -214,10 +218,254 @@ It provides more information than any basic scan and generate more traffic.
 
 <img src="./Images/nmap/sV.png" height=200px>
 
+<hr>
+
 ## 3.Burp Suite (web proxy).
 
+# Burp Suite Notes
 
-<hr>
+### Target
+
+**Target** shows and organizes information about the web application being tested. It helps you understand the application's pages, directories, and requests.
+
+### Components
+
+* **Site Map** – Shows discovered pages and resources.
+* **Scope** – Defines which parts of the application are included in testing.
+* **Issue definitions** – Helps understand potential security issues.
+
+###  Steps
+
+1. Open **Target**.
+2. Open **Site map**.
+3. Browse the authorized web application.
+4. Burp records the requests and resources.
+5. Expand the target in the Site Map.
+6. Select a request to inspect it.
+
+---
+
+### Proxy
+
+**Proxy** works between the browser and web server. It allows you to intercept, inspect, and modify HTTP/HTTPS traffic.
+
+### Components
+
+1. **Intercept**
+2. **HTTP history**
+3. **WebSockets history**
+4. **Proxy settings**
+
+#### Intercept 
+
+1. Open **Proxy → Intercept**.
+2. Turn **Intercept ON**.
+3. Send a request from the browser.
+4. Burp captures the request.
+5. Inspect the request.
+6. Click **Forward** to send it to the server.
+7. Turn **Intercept OFF** when you do not need interception.
+
+<img src="./Images/Burp_Suite/dvwa.png" height=200px><br>
+<img src="./Images/Burp_Suite/Intercept.png" height=200px><br>
+<img src="./Images/Burp_Suite/intruder_res.png" height=200px>
+
+#### HTTP History
+
+1. Open **Proxy → HTTP history**.
+2. Browse the authorized application.
+3. Find the required request.
+4. Select it.
+5. View the request and response.
+6. Send the request to another Burp tool if required.
+
+<img src="./Images/Burp_Suite/dvwa.png" height=200px><br>
+<img src="./Images/Burp_Suite/repeater.png" height=200px>
+
+---
+
+## Intruder
+
+**Intruder** automates repeated requests by inserting different payloads into selected positions in an HTTP request.
+
+### Components
+
+1. **Positions**
+2. **Payloads**
+3. **Resource Pool**
+4. **Options**
+
+---
+
+#### Positions
+
+
+Positions are the locations where Burp inserts payloads.
+
+Payload positions are marked using:
+
+`§payload§`
+
+### Steps
+
+1. Send a request to **Intruder**.
+2. Open **Positions**.
+3. Click **Clear** if necessary.
+4. Select the value you want to test.
+5. Click **Add §**.
+6. Select the required **Attack Type**.
+
+<img src="./Images/Burp_Suite/intruder.png" height=200px><br>
+<img src="./Images/Burp_Suite/intruder_res.png" height=200px>
+
+---
+
+## Intruder Attack Types
+
+Burp Intruder has four main attack types:
+
+1. **Sniper**
+2. **Battering Ram**
+3. **Pitchfork**
+4. **Cluster Bomb**
+
+---
+
+### Sniper
+
+Sniper uses **one payload set** and tests the selected positions **one at a time**.
+
+#### Example
+
+Request:
+
+`user=§value§&id=§123§`
+
+Payload list:
+
+`A`
+`B`
+`C`
+
+Burp tests each position separately.
+
+### Best Used For
+
+- Testing individual parameters
+- Fuzzing input fields
+- Checking how different values affect a request
+
+### Steps
+
+1. Send the request to Intruder.
+2. Open **Positions**.
+3. Select **Sniper**.
+4. Mark the required position.
+5. Open **Payloads**.
+6. Add a test payload list.
+7. Start the attack in your authorized lab.
+8. Compare the responses.
+
+---
+
+### Battering Ram
+Battering Ram uses **one payload set** and inserts the **same payload into all selected positions simultaneously**.
+
+### Best Used For
+
+When the same input needs to appear in multiple locations.
+
+### Steps
+
+1. Send the request to Intruder.
+2. Select multiple positions.
+3. Choose **Battering Ram**.
+4. Open **Payloads**.
+5. Add your test payload list.
+6. Start the controlled test.
+7. Compare the responses.
+
+---
+
+### Pitchfork
+
+Pitchfork uses **multiple payload sets** and moves through them **together in parallel**.
+
+#### Example
+
+Payload Set 1:
+
+`A1`
+`A2`
+`A3`
+
+Payload Set 2:
+
+`B1`
+`B2`
+`B3`
+
+Requests:
+
+`A1 + B1`
+`A2 + B2`
+`A3 + B3`
+
+### Best Used For
+
+Testing related pairs of values where each item in one list corresponds to an item in another list.
+
+### Steps
+
+1. Select multiple payload positions.
+2. Choose **Pitchfork**.
+3. Configure a payload set for each position.
+4. Load the corresponding test data.
+5. Start the controlled test.
+6. Analyze the results.
+
+---
+
+### Cluster Bomb
+Cluster Bomb uses **multiple payload sets** and tests **all possible combinations** between them.
+
+### Example
+
+Set 1:
+
+`A1`
+`A2`
+
+Set 2:
+
+`B1`
+`B2`
+
+Combinations:
+
+`A1 + B1`
+`A1 + B2`
+`A2 + B1`
+`A2 + B2`
+
+### Important
+
+Cluster Bomb can generate a **very large number of requests**, so use small test lists in a lab.
+
+### Best Used For
+
+Testing combinations of multiple independent input values.
+
+### Steps
+
+1. Select multiple payload positions.
+2. Choose **Cluster Bomb**.
+3. Configure a payload set for each position.
+4. Add small test lists.
+5. Start the controlled test.
+6. Compare status codes, response lengths, and other differences.
+
+---
 
 ## 4.Netcat (network debugging)
 
