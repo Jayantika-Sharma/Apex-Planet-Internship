@@ -172,7 +172,7 @@ It uses traditional ICMP ping mechanism,to discover active/reachable hosts.
 
 **nmap -PE <target>**
 
-<img src="./Images/nmap/PE.png" height=200px>>
+<img src="./Images/nmap/PE.png" height=200px>
 
 #### TCP SYN Ping (-PS)
 It sends TCP packets to one or more specified ports to determine if host is reachable or not.
