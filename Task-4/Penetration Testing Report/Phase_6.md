@@ -13,10 +13,6 @@ To upgrade the command shell session obtained during the Controlled Exploitation
 6. Network Configuration: `Host-Only Adapter`
 7. Tools: `Metasploit Framework (msfconsole)`
 
-## Rules of Engagement for This Phase
-- All commands are typed into the Kali Linux terminal, continuing from the session established in the Controlled Exploitation phase.
-- No persistence mechanisms, new accounts, or destructive actions are performed.
-- Only enumeration/read commands are used to demonstrate impact.
 
 ## Process
 
@@ -61,8 +57,6 @@ Listed active sessions to confirm the session ID of the backgrounded command she
 sessions -u 1
 ```
 
-#### Explanation
-Upgraded the existing command shell (Session 1) to a Meterpreter session, which provides built-in post-exploitation commands such as `sysinfo` and `hashdump`. Metasploit automatically starts a new listener and migrates the session.
 
 #### Results
 - Upgrade Status: `[Record actual result]`
@@ -122,4 +116,4 @@ Once post-exploitation commands were run and documented, the Meterpreter session
 
 ## Conclusion
 
-The Post-Exploitation phase confirmed that the reverse shell access gained through the `vsftpd 2.3.4` backdoor could be upgraded to a full Meterpreter session, enabling structured post-exploitation commands. `sysinfo` confirmed system details and credential exposure on the Metasploitable2 target. No persistence or destructive actions were taken. These findings reinforce the critical severity of the original finding and carry forward into the final Reporting phase.
+The Post-Exploitation phase confirmed that the reverse shell access gained through the `vsftpd 2.3.4` backdoor could be upgraded to a full Meterpreter session, enabling structured post-exploitation commands. `sysinfo` confirmed system details and credential exposure on the Metasploitable2 target.
